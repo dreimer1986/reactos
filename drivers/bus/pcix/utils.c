@@ -248,9 +248,8 @@ PciGetRegistryValue(IN PWCHAR ValueName,
         Status = STATUS_INVALID_PARAMETER;
         if (PartialInfo->Type != Type) break;
 
-        /* Subtract the registry-specific header, to get the data size */
         ASSERT(NeededLength == ActualLength);
-        NeededLength -= sizeof(KEY_VALUE_PARTIAL_INFORMATION);
+        NeededLength = PartialInfo->DataLength;
 
         /* Allocate a buffer to hold the data and return it to the caller */
         Status = STATUS_INSUFFICIENT_RESOURCES;
@@ -1354,7 +1353,7 @@ PciDetermineSlotNumber(IN PPCI_PDO_EXTENSION PdoExtension,
     {
         /* Read every slot information entry */
         SlotInfo = &PciIrqRoutingTable->Slot[0];
-        DPRINT1("PIR$ %p is %lx bytes, slot 0 is at: %p\n",
+        DPRINT1("$PIR %p is %lx bytes, slot 0 is at: %p\n",
                 PciIrqRoutingTable, PciIrqRoutingTable->TableSize, SlotInfo);
         while (SlotInfo < (PSLOT_INFO)((ULONG_PTR)PciIrqRoutingTable +
                                        PciIrqRoutingTable->TableSize))
