@@ -1,6 +1,6 @@
 
 # Possible definitions: CARDSTYLE_DEFAULT or CARDSTYLE_BAVARIAN
-add_definitions(-DCARDSTYLE_DEFAULT)
+add_definitions(-DCARDSTYLE_BAVARIAN)
 
 spec2def(cards.dll cards.spec)
 
