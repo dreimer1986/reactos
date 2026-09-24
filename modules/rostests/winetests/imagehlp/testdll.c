@@ -1,7 +1,5 @@
 /*
- * Resource file for pstorec
- *
- * Copyright 2009 Alexandre Julliard
+ * Copyright 2021 Zebediah Figura
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,14 +16,19 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#include <windef.h>
-//#include "winbase.h"
-//#include "winuser.h"
-//#include "winnls.h"
+#if 0
+#pragma makedep testdll
+#endif
 
-LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#include <oaidl.h>
+#include <commdlg.h>
+#include <shlwapi.h>
 
-/* @makedep: pstorec_tlb.tlb */
-1 TYPELIB pstorec_tlb.tlb
+extern DWORD WINAPI StrCmpCA(const char *, const char *);
 
-2 WINE_REGISTRY "pstorec.rgs"
+void export(void)
+{
+    SysAllocString(NULL);
+    GetOpenFileNameA(NULL);
+    SHRegGetIntW(NULL, NULL, 0);
+}

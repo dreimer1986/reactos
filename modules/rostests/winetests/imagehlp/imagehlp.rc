@@ -1,6 +1,5 @@
 /*
- *
- * Copyright 2014 Austin English
+ * Copyright 2022 Rémi Bernon for CodeWeavers
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,23 +16,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#include <stdarg.h>
+#include "winuser.h"
 
-#include "windef.h"
-#include "winbase.h"
-
-BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID reserved)
-{
-    switch (reason)
-    {
-#ifndef __REACTOS__
-        case DLL_WINE_PREATTACH:
-            return FALSE;    /* prefer native version */
-#endif
-        case DLL_PROCESS_ATTACH:
-            DisableThreadLibraryCalls(instance);
-            break;
-    }
-
-    return TRUE;
-}
+testdll.dll TESTDLL "imagehlp_testdll.dll"
